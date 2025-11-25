@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 3 - Iterative Versions Viewer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #1a1a1a;
+      overflow: hidden;
+      height: 100vh;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .toolbar-title {
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .toolbar-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-close {
+      background: rgba(255, 0, 0, 0.3);
+    }
+
+    .btn-close:hover {
+      background: rgba(255, 0, 0, 0.5);
+    }
+
+    #pdfWrapper {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(100vh - 60px);
+      overflow: auto;
+      background: #525252;
+    }
+
+    #pdfContainer {
+      position: relative;
+      width: 100%;
+      min-height: 100%;
+      transform-origin: 0 0;
+      transition: transform 0.2s ease-out;
+    }
+
+    #pdfFrame {
+      width: 100%;
+      height: 100vh;
+      min-height: 800px;
+      border: none;
+      background: white;
+      display: block;
+    }
+
+    .protection-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .protection-overlay.active {
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div class="toolbar-title">Assignment 3 - Iterative Versions</div>
+    <div class="toolbar-controls">
+      <button class="btn btn-close" onclick="window.close()">Close</button>
+    </div>
+  </div>
+
+  <div id="pdfWrapper">
+    <div id="pdfContainer">
+      <iframe 
+        id="pdfFrame" 
+        src="Assignment 3_101020111.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+        title="Assignment 3 Iterative Versions PDF">
+      </iframe>
+      <div class="protection-overlay" id="protectionOverlay"></div>
+    </div>
+  </div>
+
+  <script>
+    // Disable right-click on entire page
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }, true);
+
+    // Keyboard shortcuts - block downloads
+    document.addEventListener('keydown', function(e) {
+      // Prevent Ctrl+S (Save)
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      // Prevent Ctrl+P (Print)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      // Prevent Ctrl+Shift+I (Developer Tools)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      // Prevent F12 (Developer Tools)
+      if (e.key === 'F12') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      // Prevent Ctrl+U (View Source)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      // Prevent Ctrl+O (Open File)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'o') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    }, true);
+
+    // Disable text selection
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable drag and drop
+    document.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable printing via window.print()
+    window.onbeforeprint = function() {
+      alert('Printing is disabled for this document.');
+      return false;
+    };
+    window.onafterprint = function() {
+      alert('Printing is disabled for this document.');
+      return false;
+    };
+
+    // Additional protection: disable common download methods
+    window.addEventListener('beforeunload', function(e) {
+      // This won't prevent downloads but adds a layer
+    });
+
+    // Prevent opening in new tab/window
+    document.addEventListener('keydown', function(e) {
+      // Prevent Ctrl+Click or Middle-click on links
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === 'Click' || e.button === 1) {
+          e.preventDefault();
+          return false;
+        }
+      }
+    }, true);
+  </script>
+</body>
+</html>
+
