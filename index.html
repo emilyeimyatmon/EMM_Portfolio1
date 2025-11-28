@@ -868,9 +868,11 @@
     }
 
     .section-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       padding: 0.5rem 1.25rem;
-      background: rgba(99, 102, 241, 0.1);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
       color: var(--primary);
       border-radius: 50px;
       font-size: 0.875rem;
@@ -878,6 +880,25 @@
       margin-bottom: 1rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-badge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .section-badge:hover::before {
+      left: 100%;
     }
 
     .section-title {
@@ -1604,46 +1625,28 @@
       }
     }
 
-    /* Projects */
+    /* Projects - Clean Design */
     .project-card {
       background: var(--bg-white);
       border: 1px solid var(--border);
-      border-radius: 1.5rem;
+      border-radius: 1rem;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       height: 100%;
       display: flex;
       flex-direction: column;
       position: relative;
     }
 
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
     .project-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
-      border-color: var(--primary);
-      animation: none;
-    }
-
-    .project-card:hover::before {
-      transform: scaleX(1);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+      border-color: var(--primary-light);
     }
 
     .project-header {
-      padding: 2rem 1.5rem;
+      padding: 1.75rem 1.5rem;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       position: relative;
@@ -1695,6 +1698,11 @@
       margin-bottom: 1.25rem;
       line-height: 1.6;
       font-size: 0.9375rem;
+      transition: color 0.3s ease;
+    }
+
+    .project-card:hover .project-description {
+      color: var(--text-dark);
     }
 
     .project-highlights {
@@ -1708,18 +1716,52 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 0.875rem;
-      background: var(--bg-light);
-      border-radius: 0.5rem;
+      padding: 0.625rem 1rem;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+      border-radius: 12px;
       font-size: 0.8125rem;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text-dark);
-      border: 1px solid var(--border);
+      border: 2px solid rgba(99, 102, 241, 0.2);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+    }
+
+    .project-highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .project-highlight:hover::before {
+      left: 100%;
+    }
+
+    .project-highlight:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+      border-color: var(--primary);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 
+        0 6px 16px rgba(99, 102, 241, 0.3),
+        0 2px 8px rgba(236, 72, 153, 0.2);
     }
 
     .project-highlight i {
       color: var(--primary);
-      font-size: 0.875rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .project-highlight:hover i {
+      transform: scale(1.2) rotate(5deg);
+      color: var(--secondary);
     }
 
     .project-features {
@@ -1735,9 +1777,9 @@
       padding: 0.5rem 0.75rem;
       color: var(--text-muted);
       font-size: 0.875rem;
-      background: var(--bg-light);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
       border-radius: 0.5rem;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(99, 102, 241, 0.15);
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -1748,18 +1790,28 @@
       color: var(--primary);
       font-weight: 700;
       font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .project-features li {
+      transition: all 0.3s ease;
+    }
+
+    .project-features li:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(236, 72, 153, 0.12));
+      border-color: var(--primary);
+      color: var(--text-dark);
+      transform: translateX(4px);
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+    }
+
+    .project-features li:hover::before {
+      transform: scale(1.2);
+      color: var(--secondary);
     }
 
     .project-read-more {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      margin-top: 1rem;
-    }
-
-    .project-read-more.expanded {
-      max-height: 3000px;
-      transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      display: none;
     }
 
     .project-read-more-content {
@@ -1769,6 +1821,18 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.25rem;
+      position: relative;
+    }
+
+    .project-read-more-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+      opacity: 0.5;
     }
 
     @media (max-width: 768px) {
@@ -1789,12 +1853,30 @@
       padding: 1.25rem;
       border: 1px solid var(--border);
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .read-more-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .read-more-item:hover::before {
+      transform: scaleY(1);
     }
 
     .read-more-item:hover {
       background: white;
       border-color: var(--primary-light);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
       transform: translateY(-2px);
     }
 
@@ -1877,13 +1959,35 @@
     }
 
     .project-footer {
-      padding: 1.5rem;
-      border-top: 1px solid var(--border);
+      padding: 2rem;
+      border-top: 2px solid transparent;
+      border-image: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent) 1;
       display: flex;
-      gap: 0.75rem;
-      flex-wrap: nowrap;
+      gap: 1rem;
+      flex-wrap: wrap;
       justify-content: flex-start;
       align-items: center;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(248, 250, 252, 0.9));
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary) 20%, var(--secondary) 50%, var(--primary) 80%, transparent);
+      opacity: 0.6;
+      animation: shimmer 3s ease infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
     }
 
     .project-footer .btn {
@@ -1927,12 +2031,16 @@
     .btn-project-primary {
       background: var(--primary);
       color: white;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     .btn-project-primary:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
       color: white;
     }
 
@@ -1940,12 +2048,69 @@
       background: transparent;
       color: var(--primary);
       border: 2px solid var(--primary);
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     .btn-project-outline:hover {
       background: var(--primary);
       color: white;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-read-more-modal {
+      width: auto;
+      padding: 0;
+      background: transparent;
+      color: var(--primary);
+      border: none;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .btn-read-more-modal::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .btn-read-more-modal:hover {
+      color: var(--primary-dark);
+      background: transparent;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-read-more-modal:hover::after {
+      width: 100%;
+    }
+
+    .btn-read-more-modal i {
+      transition: transform 0.3s ease;
+      font-size: 0.875rem;
+    }
+
+    .btn-read-more-modal:hover i {
+      transform: translateX(4px);
+    }
+
+    .btn-read-more-modal span {
+      position: relative;
     }
 
     /* Stats Section */
@@ -2476,7 +2641,7 @@
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experiences</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -2559,7 +2724,7 @@
             <div class="card-icon">
               <i class="bi bi-mortarboard"></i>
             </div>
-            <h3 class="card-title">Education & Certifications</h3>
+            <h3 class="card-title">Education</h3>
             <p class="card-text mb-3">
               <strong>Master of Business Analytics & AI</strong> (Expected Aug 2026)<br>
               Ontario Tech University, Oshawa, Ontario
@@ -2567,9 +2732,6 @@
             <p class="card-text mb-3">
               <strong>MSc Cyber Security - Distinction</strong> (Feb 2025)<br>
               Coventry University, UK - PSB Academy Singapore
-            </p>
-            <p class="card-text">
-              <strong>Certifications:</strong> Microsoft Azure Fundamentals, ITIL Foundation, CAPM (PMI)
             </p>
             </div>
           </div>
@@ -2859,7 +3021,7 @@
   <section class="section" id="experience">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
-        <span class="section-badge">Experience</span>
+        <span class="section-badge">Experiences</span>
         <h2 class="section-title">Professional Journey</h2>
         <p class="section-subtitle">
           Over a decade of experience in IT systems engineering, automation, and enterprise support.
@@ -2995,10 +3157,11 @@
   </section>
 
   <!-- Projects Section -->
-  <section class="section" id="projects" style="background: var(--bg-light);">
-    <div class="container">
+  <section class="section" id="projects" style="background: linear-gradient(180deg, var(--bg-light) 0%, #ffffff 50%, var(--bg-light) 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.05) 0%, transparent 50%); pointer-events: none; z-index: 0;"></div>
+    <div class="container" style="position: relative; z-index: 1;">
       <div class="section-header" data-aos="fade-up">
-        <span class="section-badge">Portfolio</span>
+        <span class="section-badge">Projects Portfolio</span>
         <h2 class="section-title">Data Storytelling & Visualization Projects</h2>
         <p class="section-subtitle">
           This portfolio assembles my major course deliverables into a cohesive professional body of work, 
@@ -3053,10 +3216,10 @@
                 <li>Iconography</li>
                 <li>Color coding</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'census')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsCensusModal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-census">
                 <div class="project-read-more-content">
                   <div class="read-more-item">
@@ -3076,6 +3239,15 @@
                       <h6 class="read-more-item-title">Source</h6>
                     </div>
                     <p class="read-more-item-content">Singapore Department of Statistics - 2020 Census interactive infographics</p>
+                  </div>
+                  <div class="read-more-item">
+                    <div class="read-more-item-header">
+                      <div class="read-more-item-icon">
+                        <i class="bi bi-layout-text-window"></i>
+                      </div>
+                      <h6 class="read-more-item-title">Format</h6>
+                    </div>
+                    <p class="read-more-item-content">Interactive web-based infographics with thematic sections organized by topic areas.</p>
                   </div>
                 </div>
               </div>
@@ -3116,21 +3288,12 @@
                 <li>Interactive charts</li>
                 <li>Infographic design</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'emily')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsEmilyModal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-emily">
                 <div class="project-read-more-content">
-                  <div class="read-more-item">
-                    <div class="read-more-item-header">
-                      <div class="read-more-item-icon">
-                        <i class="bi bi-bar-chart"></i>
-                      </div>
-                      <h6 class="read-more-item-title">Key Visual Devices</h6>
-                    </div>
-                    <p class="read-more-item-content">Mind map, donut chart, line chart, radar chart, comparative panels</p>
-                  </div>
                   <div class="read-more-item">
                     <div class="read-more-item-header">
                       <div class="read-more-item-icon">
@@ -3198,10 +3361,10 @@
                 <li>Time-series charts</li>
                 <li>Before/after comparison</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'snow')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsSnowModal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-snow">
                 <div class="project-read-more-content">
                   <div class="read-more-item">
@@ -3279,10 +3442,10 @@
                 <li>Provincial patterns</li>
                 <li>Student caps</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'canada')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsCanadaModal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-canada">
                 <div class="project-read-more-content">
                   <div class="read-more-item">
@@ -3302,15 +3465,6 @@
                       <h6 class="read-more-item-title">Format</h6>
                     </div>
                     <p class="read-more-item-content">Multi-panel infographic</p>
-                  </div>
-                  <div class="read-more-item">
-                    <div class="read-more-item-header">
-                      <div class="read-more-item-icon">
-                        <i class="bi bi-brush"></i>
-                      </div>
-                      <h6 class="read-more-item-title">Visual Style</h6>
-                    </div>
-                    <p class="read-more-item-content">Dark UI theme, neon accents, 3-colour palette, 3D isometric people strip</p>
                   </div>
                   <div class="read-more-item">
                     <div class="read-more-item-header">
@@ -3364,10 +3518,10 @@
                 <li>Rental affordability trends</li>
                 <li>StatsCan data (2021–2025)</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'oshawa')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsOshawaModal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-oshawa">
                 <div class="project-read-more-content">
                   <div class="read-more-item">
@@ -3411,44 +3565,28 @@
                   <div class="read-more-item">
                     <div class="read-more-item-header">
                       <div class="read-more-item-icon">
-                        <i class="bi bi-person-badge"></i>
-                      </div>
-                      <h6 class="read-more-item-title">Personas</h6>
-                    </div>
-                    <p class="read-more-item-content"><strong>Persona 1 - Jamie:</strong> AI graduate struggling to find stable work and manage student debt.<br><br>
-                    <strong>Persona 2 - Christina:</strong> Part-time finance analyst who learned AI to upskill and improve her career prospects.<br><br>
-                    <strong>Persona 3 - Catherine:</strong> Data analyst using AI tools to upskill and push for promotion while still facing affordability challenges.<br><br>
-                    <em>Interactive elements connect each persona to specific data points in the visualizations.</em></p>
-                  </div>
-                  <div class="read-more-item">
-                    <div class="read-more-item-header">
-                      <div class="read-more-item-icon">
                         <i class="bi bi-check-circle"></i>
                       </div>
                       <h6 class="read-more-item-title">Conclusion</h6>
                     </div>
                     <p class="read-more-item-content"><strong>Use AI to develop your skills.</strong> The data story demonstrates that while AI disrupts traditional job markets, those who adapt and learn AI tools can navigate the changing landscape more successfully.</p>
                   </div>
-                  <div class="read-more-item">
-                    <div class="read-more-item-header">
-                      <div class="read-more-item-icon">
-                        <i class="bi bi-layout-text-window"></i>
-                      </div>
-                      <h6 class="read-more-item-title">Format & Audience</h6>
-                    </div>
-                    <p class="read-more-item-content"><strong>Format:</strong> Scrollytelling explainer or browser-based interactive story<br><br>
-                    <strong>Target Audience:</strong> Government, universities, employers, banks, landlords, and graduating students.</p>
-                  </div>
                 </div>
               </div>
             </div>
             <div class="project-footer">
-              <a href="https://kiya69.github.io/data-story/" target="_blank" rel="noopener noreferrer" class="btn btn-project btn-project-primary">
-                <i class="bi bi-eye"></i>View Project
-              </a>
               <button class="btn btn-project btn-project-outline" data-bs-toggle="modal" data-bs-target="#projectOshawaProposalModal">
                 <i class="bi bi-file-earmark-text"></i>Proposal
               </button>
+              <button class="btn btn-project btn-project-outline" data-bs-toggle="modal" data-bs-target="#projectOshawaPersonasModal">
+                <i class="bi bi-person-badge"></i>Personas
+              </button>
+              <button class="btn btn-project btn-project-outline" data-bs-toggle="modal" data-bs-target="#projectOshawaDesignModal">
+                <i class="bi bi-file-earmark-pdf"></i>Design
+              </button>
+              <a href="data/OshawaAffordability.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-project btn-project-primary">
+                <i class="bi bi-eye"></i>View Story
+              </a>
             </div>
           </div>
         </div>
@@ -3458,7 +3596,7 @@
           <div class="project-card">
             <div class="project-header">
               <span class="project-badge">Tutorial Showcase · Portfolio Artefact</span>
-              <h3 class="project-title">Tutorial 1 – Peer Story Sketch</h3>
+              <h3 class="project-title">Ideation & Storyboarding</h3>
             </div>
             <div class="project-body">
               <p class="project-description">
@@ -3481,10 +3619,10 @@
                 <li>Visual profile of interviewee</li>
                 <li>3-5 key insights visualized</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'tutorial1')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsTutorial1Modal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-tutorial1">
                 <div class="project-read-more-content">
                   <div class="read-more-item">
@@ -3514,6 +3652,33 @@
                     </div>
                     <p class="read-more-item-content"><strong>Tool:</strong> Paper & Pencil Crayons<br><strong>Format:</strong> Grid, free-flowing, comic book style, infographic, dashboard, or long-form story layout</p>
                   </div>
+                  <div class="read-more-item">
+                    <div class="read-more-item-header">
+                      <div class="read-more-item-icon">
+                        <i class="bi bi-palette"></i>
+                      </div>
+                      <h6 class="read-more-item-title">Visual Elements</h6>
+                    </div>
+                    <p class="read-more-item-content">Icons, symbols, and charts used to represent data without text. Focus on visual storytelling through color, shape, and spatial relationships.</p>
+                  </div>
+                  <div class="read-more-item">
+                    <div class="read-more-item-header">
+                      <div class="read-more-item-icon">
+                        <i class="bi bi-lightbulb"></i>
+                      </div>
+                      <h6 class="read-more-item-title">Key Insights</h6>
+                    </div>
+                    <p class="read-more-item-content">Explores how personal data can be visualized through non-textual means, emphasizing the power of visual communication in data storytelling.</p>
+                  </div>
+                  <div class="read-more-item">
+                    <div class="read-more-item-header">
+                      <div class="read-more-item-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                      </div>
+                      <h6 class="read-more-item-title">Design Process</h6>
+                    </div>
+                    <p class="read-more-item-content">Interview → Data Collection → Visual Mapping → Sketch Creation. Process emphasizes understanding personal patterns and translating them into visual narratives.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3530,7 +3695,7 @@
           <div class="project-card">
             <div class="project-header">
               <span class="project-badge">Tutorial Showcase · Portfolio Artefact</span>
-              <h3 class="project-title">Tutorial 2 – Ideation & Storyboarding</h3>
+              <h3 class="project-title">Peer Story Sketch</h3>
             </div>
             <div class="project-body">
               <p class="project-description">
@@ -3553,10 +3718,10 @@
                 <li>Character, data & chart mapping</li>
                 <li>Clustering & visual connections</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'tutorial2')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsTutorial2Modal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-tutorial2">
                 <div class="project-read-more-content">
                   <div class="read-more-item">
@@ -3611,7 +3776,7 @@
           <div class="project-card">
             <div class="project-header">
               <span class="project-badge">Tutorial Showcase · Portfolio Artefact</span>
-              <h3 class="project-title">Tutorial 3 – Statistics Canada Data</h3>
+              <h3 class="project-title">Statistics Canada Data</h3>
             </div>
             <div class="project-body">
               <p class="project-description">
@@ -3634,10 +3799,10 @@
                 <li>Health Regions data</li>
                 <li>2021 Census Profile Tables</li>
               </ul>
-              <button class="btn-read-more" onclick="toggleReadMore(this, 'tutorial3')">
-                <span>Read More</span>
-                <i class="bi bi-chevron-down"></i>
-              </button>
+              <a href="#" class="btn-read-more-modal" data-bs-toggle="modal" data-bs-target="#projectDetailsTutorial3Modal">
+                <span>Learn more</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
               <div class="project-read-more" id="readMore-tutorial3">
                 <div class="project-read-more-content">
                   <div class="read-more-item">
@@ -3756,7 +3921,7 @@
 
   <!-- Resume Modal -->
   <div class="modal fade" id="resumeModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3782,7 +3947,7 @@
 
   <!-- Project Modals -->
   <div class="modal fade" id="projectCensusModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3804,7 +3969,7 @@
   </div>
 
   <div class="modal fade" id="projectEmilyModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3826,7 +3991,7 @@
   </div>
 
   <div class="modal fade" id="projectSnowModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3848,7 +4013,7 @@
   </div>
 
   <div class="modal fade" id="projectCanadaModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3870,7 +4035,7 @@
   </div>
 
   <div class="modal fade" id="projectCanadaDesignModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3892,7 +4057,7 @@
   </div>
 
   <div class="modal fade" id="projectOshawaStoryModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3968,7 +4133,7 @@
   </div>
 
   <div class="modal fade" id="projectOshawaProposalModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
@@ -3989,19 +4154,63 @@
     </div>
   </div>
 
-  <!-- Tutorial Modals -->
-  <div class="modal fade" id="projectTutorial1Modal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal fade" id="projectOshawaPersonasModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
-            <i class="bi bi-pencil me-2"></i>Tutorial 1 – Peer Story Sketch
+            <i class="bi bi-person-badge me-2"></i>AI, Affordability, and Young Professionals in Oshawa - Personas
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="data/Personas.pdf" class="project-iframe" title="Personas"></iframe>
+        </div>
+        <div class="modal-footer">
+          <a href="data/Personas.pdf" target="_blank" class="btn btn-primary">
+            <i class="bi bi-box-arrow-up-right me-2"></i>View Full Page
+          </a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectOshawaDesignModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-file-earmark-pdf me-2"></i>AI, Affordability, and Young Professionals in Oshawa - Design Process
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="data/DesignProcess.pdf" class="project-iframe" title="Design Process"></iframe>
+        </div>
+        <div class="modal-footer">
+          <a href="data/DesignProcess.pdf" target="_blank" class="btn btn-primary">
+            <i class="bi bi-box-arrow-up-right me-2"></i>View Full Page
+          </a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tutorial Modals -->
+  <div class="modal fade" id="projectTutorial1Modal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-pencil me-2"></i>Ideation & Storyboarding
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div style="padding: 1rem; text-align: center;">
-            <img src="data/peer.png" alt="Peer Story Sketch" style="max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+            <img src="data/peer.png" alt="Ideation & Storyboarding" style="max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
           </div>
         </div>
         <div class="modal-footer">
@@ -4012,18 +4221,199 @@
   </div>
 
   <div class="modal fade" id="projectTutorial2Modal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
-            <i class="bi bi-sticky me-2"></i>Tutorial 2 – Ideation & Storyboarding
+            <i class="bi bi-sticky me-2"></i>Peer Story Sketch
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div style="padding: 1rem; text-align: center;">
-            <img src="data/micro.jpg" alt="Ideation & Storyboarding" style="max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+            <img src="data/micro.jpg" alt="Peer Story Sketch" style="max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Details Modals -->
+  <div class="modal fade" id="projectDetailsCensusModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>Singapore Census 2020 Inspiration - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content">
+            <div class="read-more-item">
+              <div class="read-more-item-header">
+                <div class="read-more-item-icon">
+                  <i class="bi bi-lightbulb"></i>
+                </div>
+                <h6 class="read-more-item-title">Design Lessons</h6>
+              </div>
+              <p class="read-more-item-content">Future iterations could integrate small interactive filters (e.g., age, gender, neighbourhood) and explanatory annotations that highlight policy implications of each trend.</p>
+            </div>
+            <div class="read-more-item">
+              <div class="read-more-item-header">
+                <div class="read-more-item-icon">
+                  <i class="bi bi-link-45deg"></i>
+                </div>
+                <h6 class="read-more-item-title">Source</h6>
+              </div>
+              <p class="read-more-item-content">Singapore Department of Statistics - 2020 Census interactive infographics</p>
+            </div>
+            <div class="read-more-item">
+              <div class="read-more-item-header">
+                <div class="read-more-item-icon">
+                  <i class="bi bi-layout-text-window"></i>
+                </div>
+                <h6 class="read-more-item-title">Format</h6>
+              </div>
+              <p class="read-more-item-content">Interactive web-based infographics with thematic sections organized by topic areas.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectDetailsEmilyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>Emily's Path to Calm - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectDetailsSnowModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>John Snow's Cholera Map Redesign - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectDetailsCanadaModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>Canada Immigration Infographic - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectDetailsOshawaModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>AI, Affordability, and Young Professionals in Oshawa - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectDetailsTutorial1Modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>Peer Story Sketch - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectDetailsTutorial2Modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>Ideation & Storyboarding - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="projectDetailsTutorial3Modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-info-circle me-2"></i>Statistics Canada Data - Details
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="project-read-more-content"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -4038,6 +4428,44 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   
   <script>
+    // Copy read-more content to modals
+    document.addEventListener('DOMContentLoaded', function() {
+      const modalMappings = {
+        'projectDetailsEmilyModal': 'readMore-emily',
+        'projectDetailsSnowModal': 'readMore-snow',
+        'projectDetailsCanadaModal': 'readMore-canada',
+        'projectDetailsOshawaModal': 'readMore-oshawa',
+        'projectDetailsTutorial1Modal': 'readMore-tutorial1',
+        'projectDetailsTutorial2Modal': 'readMore-tutorial2',
+        'projectDetailsTutorial3Modal': 'readMore-tutorial3'
+      };
+
+      Object.keys(modalMappings).forEach(function(modalId) {
+        const modal = document.getElementById(modalId);
+        const sourceId = modalMappings[modalId];
+        const sourceContent = document.getElementById(sourceId);
+        
+        if (modal && sourceContent) {
+          modal.addEventListener('show.bs.modal', function() {
+            const targetContainer = modal.querySelector('.project-read-more-content');
+            if (targetContainer) {
+              const sourceContentDiv = sourceContent.querySelector('.project-read-more-content');
+              if (sourceContentDiv) {
+                targetContainer.innerHTML = sourceContentDiv.innerHTML;
+              }
+            }
+          });
+        }
+      });
+
+      // Prevent default link behavior for read-more links
+      document.querySelectorAll('.btn-read-more-modal').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+        });
+      });
+    });
+
     // Initialize AOS
     AOS.init({
       duration: 800,
@@ -4096,19 +4524,46 @@
     });
 
     // Read More toggle function
-    function toggleReadMore(button, projectId) {
-      const readMoreSection = document.getElementById('readMore-' + projectId);
+    function toggleReadMore(button, projectId, event) {
+      // Prevent event bubbling completely
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+      
+      // Get the EXACT section for this specific projectId
+      const targetId = 'readMore-' + projectId;
+      const readMoreSection = document.getElementById(targetId);
+      
+      // Verify we have the correct element
+      if (!readMoreSection || readMoreSection.id !== targetId || !readMoreSection.classList.contains('project-read-more')) {
+        return false;
+      }
+      
+      // Get current state
       const isExpanded = readMoreSection.classList.contains('expanded');
       
+      // Toggle ONLY this specific section - absolutely no other sections
       if (isExpanded) {
+        // Collapse THIS section only
         readMoreSection.classList.remove('expanded');
         button.classList.remove('expanded');
-        button.querySelector('span').textContent = 'Read More';
+        const span = button.querySelector('span');
+        if (span) {
+          span.textContent = 'Read More';
+        }
       } else {
+        // Expand THIS section only
         readMoreSection.classList.add('expanded');
         button.classList.add('expanded');
-        button.querySelector('span').textContent = 'Read Less';
+        const span = button.querySelector('span');
+        if (span) {
+          span.textContent = 'Read Less';
+        }
       }
+      
+      return false;
     }
 
     // Make function globally accessible
