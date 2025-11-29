@@ -291,12 +291,21 @@
     }, true);
 
     // Show close button only when not in iframe (standalone window)
-    document.addEventListener('DOMContentLoaded', function() {
+    function updateCloseButtonVisibility() {
       const closeBtn = document.getElementById('closeBtn');
-      if (closeBtn && window.self === window.top) {
-        closeBtn.style.display = 'block';
+      if (closeBtn) {
+        // Explicitly hide if in iframe, show if standalone
+        if (window.self !== window.top) {
+          closeBtn.style.display = 'none';
+        } else {
+          closeBtn.style.display = 'block';
+        }
       }
-    });
+    }
+    
+    // Run immediately and on DOMContentLoaded
+    updateCloseButtonVisibility();
+    document.addEventListener('DOMContentLoaded', updateCloseButtonVisibility);
 
     // Prevent iframe from being inspected
     document.addEventListener('DOMContentLoaded', function() {

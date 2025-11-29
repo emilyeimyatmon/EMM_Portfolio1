@@ -142,7 +142,7 @@
   <div class="toolbar">
     <div class="toolbar-title">AI, Affordability, and Young Professionals in Oshawa - Project Proposal</div>
     <div class="toolbar-controls">
-      <button class="btn btn-close" onclick="window.close()">Close</button>
+      <button class="btn btn-close" id="closeBtn" onclick="closeViewer()" style="display: none;">Close</button>
     </div>
   </div>
 
@@ -158,6 +158,73 @@
   </div>
 
   <script>
+    // Close viewer function - works in iframe and standalone
+    function closeViewer() {
+      // Check if we're in an iframe
+      if (window.self !== window.top) {
+        // We're in an iframe - try multiple methods to close the parent modal
+        try {
+          const parentWindow = window.parent;
+          const parentDoc = parentWindow.document;
+          
+          // Method 1: Try to find and click any close button in the visible modal
+          const visibleModal = parentDoc.querySelector('.modal.show');
+          if (visibleModal) {
+            // Try clicking the X button in the header
+            const headerCloseBtn = visibleModal.querySelector('.btn-close[data-bs-dismiss="modal"]');
+            if (headerCloseBtn) {
+              headerCloseBtn.click();
+              return;
+            }
+            
+            // Try clicking any close button in the modal
+            const anyCloseBtn = visibleModal.querySelector('[data-bs-dismiss="modal"]');
+            if (anyCloseBtn) {
+              anyCloseBtn.click();
+              return;
+            }
+            
+            // Method 2: Try Bootstrap Modal API
+            if (parentWindow.bootstrap) {
+              const modalInstance = parentWindow.bootstrap.Modal.getInstance(visibleModal);
+              if (modalInstance) {
+                modalInstance.hide();
+                return;
+              }
+              // Try to create a new instance and hide it
+              const newModal = new parentWindow.bootstrap.Modal(visibleModal);
+              newModal.hide();
+              return;
+            }
+            
+            // Method 3: Manually remove show class and backdrop
+            visibleModal.classList.remove('show');
+            visibleModal.style.display = 'none';
+            visibleModal.setAttribute('aria-hidden', 'true');
+            visibleModal.removeAttribute('aria-modal');
+            const backdrop = parentDoc.querySelector('.modal-backdrop');
+            if (backdrop) {
+              backdrop.remove();
+            }
+            parentDoc.body.classList.remove('modal-open');
+            parentDoc.body.style.overflow = '';
+            parentDoc.body.style.paddingRight = '';
+            return;
+          }
+        } catch (e) {
+          console.log('Could not close parent modal:', e);
+          // Fallback: try window.close() anyway
+          try {
+            window.close();
+          } catch (e2) {
+            console.log('Could not close window:', e2);
+          }
+        }
+      } else {
+        // We're in a standalone window - try to close it
+        window.close();
+      }
+    }
 
     // Disable right-click on entire page
     document.addEventListener('contextmenu', function(e) {
@@ -222,6 +289,23 @@
       e.preventDefault();
       return false;
     }, true);
+
+    // Show close button only when not in iframe (standalone window)
+    function updateCloseButtonVisibility() {
+      const closeBtn = document.getElementById('closeBtn');
+      if (closeBtn) {
+        // Explicitly hide if in iframe, show if standalone
+        if (window.self !== window.top) {
+          closeBtn.style.display = 'none';
+        } else {
+          closeBtn.style.display = 'block';
+        }
+      }
+    }
+    
+    // Run immediately and on DOMContentLoaded
+    updateCloseButtonVisibility();
+    document.addEventListener('DOMContentLoaded', updateCloseButtonVisibility);
 
     // Prevent iframe from being inspected
     document.addEventListener('DOMContentLoaded', function() {
