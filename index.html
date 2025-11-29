@@ -2313,6 +2313,13 @@
       color: white;
       border: none;
       padding: 1.5rem;
+      position: relative;
+      z-index: 1050;
+    }
+
+    .modal-header .btn-close {
+      position: relative;
+      z-index: 1051;
     }
 
     .modal-title {
@@ -3584,9 +3591,9 @@
               <button class="btn btn-project btn-project-outline" data-bs-toggle="modal" data-bs-target="#projectOshawaDesignModal">
                 <i class="bi bi-file-earmark-pdf"></i>Design
               </button>
-              <a href="data/OshawaAffordability.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-project btn-project-primary">
+              <button class="btn btn-project btn-project-primary" data-bs-toggle="modal" data-bs-target="#projectOshawaAffordabilityModal">
                 <i class="bi bi-eye"></i>View Story
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -4132,6 +4139,28 @@
     </div>
   </div>
 
+  <div class="modal fade" id="projectOshawaAffordabilityModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-eye me-2"></i>AI, Affordability, and Young Professionals in Oshawa - Story
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="data/OshawaAffordability_viewer.html" class="project-iframe" title="Oshawa Affordability Story"></iframe>
+        </div>
+        <div class="modal-footer">
+          <a href="data/OshawaAffordability_viewer.html" target="_blank" class="btn btn-primary">
+            <i class="bi bi-box-arrow-up-right me-2"></i>View Full Page
+          </a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="projectOshawaProposalModal" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
@@ -4164,10 +4193,10 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <iframe src="data/Personas.pdf" class="project-iframe" title="Personas"></iframe>
+          <iframe src="data/Personas_viewer.html" class="project-iframe" title="Personas"></iframe>
         </div>
         <div class="modal-footer">
-          <a href="data/Personas.pdf" target="_blank" class="btn btn-primary">
+          <a href="data/Personas_viewer.html" target="_blank" class="btn btn-primary">
             <i class="bi bi-box-arrow-up-right me-2"></i>View Full Page
           </a>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -4186,10 +4215,10 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <iframe src="data/DesignProcess.pdf" class="project-iframe" title="Design Process"></iframe>
+          <iframe src="data/DesignProcess_viewer.html" class="project-iframe" title="Design Process"></iframe>
         </div>
         <div class="modal-footer">
-          <a href="data/DesignProcess.pdf" target="_blank" class="btn btn-primary">
+          <a href="data/DesignProcess_viewer.html" target="_blank" class="btn btn-primary">
             <i class="bi bi-box-arrow-up-right me-2"></i>View Full Page
           </a>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
