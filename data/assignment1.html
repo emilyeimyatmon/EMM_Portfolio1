@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 1 – Emily's Path to Calm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #faf4ec;
+      --card: #ffffff;
+      --accent: #d9a87c;
+      --accent-soft: #fdeee0;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --border: #e2d5c6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top, #fffaf3 0, #f7efe6 40%, #f0e4d8 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    header h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    header h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .meta span {
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.75rem;
+      margin-bottom: 0.75rem;
+      margin-top: 0;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      margin-top: 0.35rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+    }
+
+    figure {
+      margin: 1.5rem 0;
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+    }
+
+    figure img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.75rem;
+    }
+
+    figcaption {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Assignment 1: Storyboarding</h1>
+      <h2>Emily's Path to Calm</h2>
+      <div class="meta">
+        <span>Student: Ei Myat Mon</span>
+        <span>Subject: Visualization &amp; Storytelling</span>
+      </div>
+    </header>
+
+    <section id="intro">
+      <h3>Introduction and Rationale</h3>
+      <div class="card">
+        <p>
+          The theme of this data story is the growing mental health crisis among students and young adults,
+          and specifically the intolerable stress derived from trying to balance life in academic,
+          professional, and personal spheres. At an age when "burnout" is a cliché, facts and figures
+          on stress and anxiety and their effects are abundant. Bare figures, however, do not carry an
+          emotional point of connection between numbers and individuals, and are seen as abstract and removed.
+        </p>
+        <p>
+          The rationale for this project was to go beyond simply presenting the data and instead
+          “put a face to the facts” by bringing a relatable, character-driven narrative. By concentrating
+          the story on one character, “Emily,” the data is put to a face and a place, where it is no longer
+          a set of figures but an experienced state of struggle, discovery, and rehabilitation.
+          The goal is to ensure that viewers empathize and see a tangible, positive path ahead for
+          individuals who can recognize their own situations through Emily’s journey.
+        </p>
+      </div>
+    </section>
+
+    <section id="method">
+      <h3>Method and Storytelling Technique</h3>
+      <div class="card">
+        <p>
+          The chosen narrative style is a one-page scrollytelling infographic. It is ideally suited
+          to lead the reader through a linear story while organically including data visualizations
+          in meaningful locations around the story. The narrative follows a classic three-act structure:
+          the beginning with extreme stress, the turning point and seeking answers, and the conclusion
+          becoming a balanced life.
+        </p>
+        <p>
+          Visualizations do not merely appear but are embedded within the narrative. For example,
+          a donut chart shows the reasons for Emily's stress when she was worst off, and a radar chart
+          provides a powerful “before and after” view of her life quality, reinforcing the climax
+          and conclusion of the narrative. This technique helps ensure that the information tells
+          the story, not the other way around.
+        </p>
+      </div>
+    </section>
+
+    <section id="design-iterations">
+      <h3>Design Iterations</h3>
+      <div class="card">
+        <p>
+          The project involved three iterations. The first was a paper-based low-fidelity storyboard
+          that described how Emily's story would flow and the key emotions affecting her. This used
+          basic stick-figure illustrations and mock chart boxes, focusing on captions that were easy
+          to read and emotionally evocative.
+        </p>
+        <p>
+          The second phase moved to the digital wireframing stage. Design tools were used to plan
+          the layout of the scrollytelling page. Chart types were chosen based on what they needed
+          to show (for example, a donut chart to show composition and a line chart to show change
+          over time). Replacement data points from university well-being surveys and mental-health
+          research were selected to ground the story in real numbers. The final and most critical
+          task was to build the high-fidelity interactive infographic, using a professional but friendly
+          colour palette and applying minimal, usable UI design principles.
+        </p>
+      </div>
+    </section>
+
+    <section id="iteration1">
+      <h3>Iteration 1: Stress Management Mind Mapping</h3>
+
+      <div class="two-col">
+        <div class="card">
+          <p>
+            Even before Emily could start to implement any solution, she needed to identify the problem.
+            This meant taking the loose, overwhelming feeling of stress and encapsulating it visually.
+          </p>
+          <p>
+            The root concept of <strong>Stress Management</strong> is placed in the middle of the page.
+            Branches extend out to split up the root causes (Identify), coping Strategies (Techniques,
+            Support, Delegate), and prevention approaches (Prevention / Time Management).
+          </p>
+          <p>
+            This simple act of mind mapping—sketching the complex web that connects work or school,
+            relationships, money, health, and available support—was a crucial step. It transformed
+            a vague, paralysing emotional state into a clear, manageable visual problem that could be
+            tackled strategically.
+          </p>
+        </div>
+
+        <figure>
+          <!-- first image -->
+          <img src="mindmap.png" alt="Stress management mind map showing Identify, Techniques, Support, Delegate, and Prevention branches.">
+          <figcaption>Stress Management Mind Map (Iteration 1 sketch).</figcaption>
+        </figure>
+      </div>
+
+      <figure>
+        <!-- second image -->
+        <img src="ideation-notes.png" alt="Sticky notes showing ideas about stress story structure and visualizations.">
+        <figcaption>Early ideation board: notes on audience, story beats, and chart types.</figcaption>
+      </figure>
+    </section>
+  </div>
+</body>
+</html>
